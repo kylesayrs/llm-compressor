@@ -158,7 +158,7 @@ class SequentialPipeline(CalibrationPipeline):
                 #######################
                 ### START OF ONLOAD ###
                 #######################
-                device_map, kwargs = onload(subgraph_modules)
+                offload_kwargs = onload(subgraph_modules)
 
                 # linearize moe layers just before calibration,
 <<<<<<< HEAD
@@ -218,7 +218,7 @@ class SequentialPipeline(CalibrationPipeline):
                     repack_moe_subgraph(model, list(subgraph_modules.values()))
 >>>>>>> 708f25f7b (Use functional sequential offloading lifecycle)
 
-                offload(subgraph_modules, device_map, kwargs)
+                offload(subgraph_modules, offload_kwargs)
                 ### END OF ONLOAD ###
 
             if (
