@@ -125,7 +125,7 @@ class SequentialPipeline(CalibrationPipeline):
             stack.enter_context(DisableQuantization(model))
 
             # linearize MoE layers upfront if not using layer-wise linearization
-            if not dataset_args.moe_lazy_linearization_and_repack:
+            if not dataset_args.moe_eager_linearization_and_repack:
                 linearize_moe_model(model)
 
             # prepare intermediates cache
