@@ -267,13 +267,6 @@ def linearize_moe_subgraph(
     for i in tqdm.tqdm(
         range(len(non_linearized)), desc="Linearizing experts in subgraph"
     ):
-<<<<<<< HEAD
-        linearize_moe_layer(model, non_linearized[i][0], non_linearized[i][1], subgraph_modules)
-
-
-def linearize_moe_layer(
-    model: PreTrainedModel, name: str, module: torch.nn.Module, subgraph_modules: dict[str, torch.nn.Module] | None = None
-=======
         linearize_moe_layer(
             model, non_linearized[i][0], non_linearized[i][1], subgraph_modules
         )
@@ -284,7 +277,6 @@ def linearize_moe_layer(
     name: str,
     module: torch.nn.Module,
     subgraph_modules: dict[str, torch.nn.Module] | None = None,
->>>>>>> cf6481098 (Add replacement-safe MoE linearization)
 ) -> None:
     """Linearize a single module within the model"""
 
@@ -331,18 +323,9 @@ def _replace(
     if module_dict is not None:
         if module_dict.get(name) is not old_module:
             raise ValueError(
-<<<<<<< HEAD
-                f"Module {name} in module_dict does not match the old_module being replaced."
-                "Something went very wrong!"
-=======
                 f"Module {name} in module_dict does not match the old_module "
                 "being replaced. Something went very wrong!"
->>>>>>> cf6481098 (Add replacement-safe MoE linearization)
             )
         module_dict[name] = new_module
 
     model.set_submodule(name, new_module)
-<<<<<<< HEAD
-    
-=======
->>>>>>> cf6481098 (Add replacement-safe MoE linearization)
