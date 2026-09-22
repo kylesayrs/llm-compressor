@@ -162,12 +162,17 @@ class SequentialPipeline(CalibrationPipeline):
 
                 # linearize moe layers just before calibration,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if dataset_args.moe_eager_linearization_and_repack:
                     linearize_moe_subgraph(model, subgraph_modules)
 =======
                 if dataset_args.moe_lazy_linearization_and_repack:
                     linearize_moe_subgraph(model, list(subgraph_modules.values()))
 >>>>>>> 708f25f7b (Use functional sequential offloading lifecycle)
+=======
+                if dataset_args.moe_eager_linearization_and_repack:
+                    linearize_moe_subgraph(model, subgraph_modules)
+>>>>>>> cf6481098 (Add replacement-safe MoE linearization)
 
                 # do a preliminary pass to trigger modifier hooks
                 for batch_idx, inputs in _get_batches(
@@ -207,6 +212,7 @@ class SequentialPipeline(CalibrationPipeline):
 
                 if (
 <<<<<<< HEAD
+<<<<<<< HEAD
                     dataset_args.moe_eager_linearization_and_repack
                     and dataset_args.repack_moe_layers
                 ):
@@ -217,6 +223,12 @@ class SequentialPipeline(CalibrationPipeline):
                 ):
                     repack_moe_subgraph(model, list(subgraph_modules.values()))
 >>>>>>> 708f25f7b (Use functional sequential offloading lifecycle)
+=======
+                    dataset_args.moe_eager_linearization_and_repack
+                    and dataset_args.repack_moe_layers
+                ):
+                    repack_moe_subgraph(model, subgraph_modules)
+>>>>>>> cf6481098 (Add replacement-safe MoE linearization)
 
                 offload(subgraph_modules, offload_kwargs)
                 ### END OF ONLOAD ###
