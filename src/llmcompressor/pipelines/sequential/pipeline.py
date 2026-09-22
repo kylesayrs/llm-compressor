@@ -174,7 +174,6 @@ class SequentialPipeline(CalibrationPipeline):
                 ):
                     session.state.current_batch_idx = batch_idx
                     outputs = subgraph.forward(model, **inputs)
->>>>>>> 21461f830 (reworking shit:wq)
 
                     if not dataset_args.propagate_error:
                         if subgraph_index < num_subgraphs - 1:
@@ -211,7 +210,7 @@ class SequentialPipeline(CalibrationPipeline):
                 ### END OF ONLOAD ###
 
             if (
-                not dataset_args.moe_lazy_linearization_and_repack
+                not dataset_args.moe_eager_linearization_and_repack
                 and dataset_args.repack_moe_layers
             ):
                 repack_moe_model(model)
