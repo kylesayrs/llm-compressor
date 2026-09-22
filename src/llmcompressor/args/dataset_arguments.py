@@ -298,7 +298,7 @@ class DatasetArguments(CustomDatasetArguments):
             "for faster calibration when GPU memory allows (two batches on device)."
         },
     )
-    moe_eager_linearization_and_repack: bool = field(
+    moe_lazy_linearization_and_repack: bool = field(
         default=True,
         metadata={
             "help": "When using the sequential pipeline, linearize MoE layers to 2D "
